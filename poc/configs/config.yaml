@@ -1,0 +1,24 @@
+# Person Tracking Settings
+yolo_model_path: "./models/yolov5su.pt"
+yolo_confidence_threshold: 0.5
+yolo_iou_threshold: 0.45
+img_size: 640
+device: "cpu"
+
+# Face Recognition Settings
+arcface_model: "buffalo_s"
+face_db_path: "./models/face_embeddings.faiss"
+face_labels_path: "./models/face_embeddings.labels.txt"
+insightface_root: "./models/insightface"
+face_recognition_threshold: 0.6
+
+# Input/Output Settings
+# Đổi sang file để test trong WSL
+video_source: "data/videos/video_2.mp4"
+output_video_path: "data/result_2.mp4"
+
+# Tracker Settings
+track_thresh: 0.5
+match_thresh: 0.4
+track_buffer: 30
+fps: 25

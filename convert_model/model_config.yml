@@ -1,0 +1,13 @@
+models:
+    name: yolov8s          
+    platform: onnx               
+    model_file_path: ./yolov8s.onnx
+    quantize: true               
+    dataset: ./dataset.txt       
+    configs:
+      quantized_dtype: asymmetric_quantized-8 
+      mean_values: [0, 0, 0]      
+      std_values: [255, 255, 255]  
+      quant_img_RGB2BGR: false     
+      quantized_algorithm: normal  
+      quantized_method: channel    

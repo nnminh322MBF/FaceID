@@ -1,0 +1,13 @@
+numpy
+opencv-python
+torch
+torchvision
+torchaudio
+onnxruntime
+insightface==0.7.3
+faiss-cpu
+# faiss-gpu
+pyyaml
+yolov5
+scikit-learn
+boxmot
