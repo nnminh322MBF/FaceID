@@ -1,8 +1,6 @@
 # core/person_tracker.py
 import numpy as np
 from ultralytics import YOLO
-
-# 👉 import đúng cho BoxMOT 15.x
 from boxmot.trackers.bytetrack.bytetrack import ByteTrack
 
 class PersonTracker:
@@ -13,7 +11,6 @@ class PersonTracker:
         self.imgsz      = int(config.get('img_size', 640))
         self.device     = config.get('device', 'cpu')
 
-        # Khởi tạo ByteTrack (API mới)
         self.tracker = ByteTrack(
             min_conf   = float(config.get('min_conf', 0.1)),
             track_thresh = float(config.get('track_thresh', 0.45)),
@@ -31,7 +28,6 @@ class PersonTracker:
         xyxy = boxes.xyxy.cpu().numpy()                 # (N,4)
         conf = boxes.conf.cpu().numpy().reshape(-1, 1)  # (N,1)
         cls  = boxes.cls.cpu().numpy().reshape(-1, 1)   # (N,1)
-        # chỉ lấy person (COCO=0). Nếu muốn theo tất cả class thì bỏ filter này
         mask = (cls.flatten() == 0)
         xyxy, conf, cls = xyxy[mask], conf[mask], cls[mask]
 
@@ -47,13 +43,11 @@ class PersonTracker:
         )
         dets = self._make_dets(results)
 
-        # ByteTrack update: trả về ndarray [x1,y1,x2,y2,id,conf,cls,det_ind]
         tracks = self.tracker.update(dets, frame)
 
         out = []
         if tracks is None or len(tracks) == 0:
             return out
-        # tracks là np.ndarray
         for row in tracks:
             x1, y1, x2, y2, tid = map(int, row[:5])
             out.append([x1, y1, x2, y2, tid])
