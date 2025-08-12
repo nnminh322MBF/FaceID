@@ -14,11 +14,11 @@ face_recognition_threshold: 0.6
 
 # Input/Output Settings
 # Đổi sang file để test trong WSL
-video_source: "data/videos/demo1.mp4"
-output_video_path: "data/output/demo1.mp4"
+video_source: "data/inputs/demo1.mp4"
+output_video_path: "data/outputs/demo1.mp4"
 
 # Tracker Settings
 track_thresh: 0.5
-match_thresh: 0.4
+match_thresh: 0.3
 track_buffer: 30
-fps: 25
+fps: 12

@@ -3,16 +3,13 @@ import numpy as np
 import os
 import cv2
 from sklearn.preprocessing import normalize
-from face_vectorstore import FaceVectorStore
+from core.face_vectorstore import FaceVectorStore
 
 
 class FaceRecognizer:
     def __init__(self, config):
         self.model_name = config["arcface_model"]
         self.db_path = config["face_db_path"]
-        self.labels_path = config.get(
-            "face_labels_path", os.path.splitext(self.db_path)[0] + ".labels.txt"
-        )
         self.recognition_threshold = float(config["face_recognition_threshold"])
 
         insight_root = os.path.abspath(

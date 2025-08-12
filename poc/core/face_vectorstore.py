@@ -7,7 +7,7 @@ from typing import List
 class FaceVectorStore:
     def __init__(self, db_path: str, embedding_dim: int):
         self.db_path = db_path
-        self.labels_path = os.path.splitext[0] + "label.txt"
+        self.labels_path = os.path.splitext(self.db_path)[0] + "label.txt"
         self.embedding_dim = embedding_dim
         self.index = faiss.IndexFlatL2(embedding_dim)
         self.labels = []
